@@ -25,7 +25,7 @@ if options:
     #st.text( options)
     ingredients_string = ""
     for fruit_chosen in options:
-        st.subheader(fruit_chosen + 'Nurtritional Information '
+        st.subheader(fruit_chosen + 'Nurtritional Information ')
         ingredients_string += fruit_chosen + ' '
         fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_chosen)
         st.dataframe(data=fruityvice_response.json(), use_container_width=True)
