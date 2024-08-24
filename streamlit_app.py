@@ -25,7 +25,10 @@ if options:
     #st.text( options)
     ingredients_string = ""
     for fruit_chosen in options:
+        st.subheader(fruit_chosen + 'Nurtritional Information '
         ingredients_string += fruit_chosen + ' '
+        fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_chosen)
+        st.dataframe(data=fruityvice_response.json(), use_container_width=True)
     #st.text( ingredients_string)    
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients)
             values ('""" + ingredients_string + """')"""
@@ -35,7 +38,7 @@ if options:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+
 #st.text(fruityvice_response.json())
-st.dataframe(data=fruityvice_response.json(), use_container_width=True)
+
 
